@@ -109,4 +109,4 @@ Feel free to create issues or submit pull requests.
 For queries or support, reach out at:
 
 Mohd Ilyas Mansoori
-GitHub: https://github.com/Ilyas Mansoori
+GitHub: https://github.com/Ilyas-sketch7
