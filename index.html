@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VoyageFlow - Your Ultimate Travel Planning Companion">
+    <title>VoyageFlow - Interactive Travel Experience Simulator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header" role="banner">
+        <div class="header-container">
+            <div class="site-logo-container" style="cursor: pointer;" onclick="showView('view-home')">
+                <div class="site-logo">✈️</div>
+                <h1 class="site-title">VoyageFlow</h1>
+            </div>
+            <div class="header-actions">
+                <button id="loginBtn" class="btn btn-secondary btn-sm">Login</button>
+                <div id="userInfo" class="user-info hidden">
+                    <div class="user-id-display">
+                        <span class="user-icon">👤</span>
+                        <span class="user-id" id="userId"></span>
+                    </div>
+                    <button id="logoutBtn" class="btn btn-sm btn-tertiary">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent" role="main">
+        
+        <!-- View 0: Home / All Destinations -->
+        <div id="view-home" class="view-container active" role="region" aria-labelledby="home-heading">
+            <div class="home-content">
+                <section class="hero-section">
+                    <h1 id="home-heading" class="hero-title">Welcome to VoyageFlow</h1>
+                    <p class="hero-subtitle">Your Ultimate Travel Planning Companion</p>
+                    <p class="hero-description">Discover the world's most beautiful destinations and plan your perfect journey with ease</p>
+                </section>
+
+                <section class="about-section">
+                    <h2>About VoyageFlow</h2>
+                    <div class="about-content">
+                        <div class="about-card">
+                            <div class="about-icon">🌍</div>
+                            <h3>Global Destinations</h3>
+                            <p>Explore handpicked destinations across the globe - from the romantic streets of Paris to the vibrant energy of Tokyo, ancient wonders of Rome, tropical paradise of Bali, and the bustling metropolis of New York City.</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="about-icon">💰</div>
+                            <h3>Smart Price Calculator</h3>
+                            <p>Plan your budget with our intelligent pricing tool. Select from various travel options, food packages, and activities to get instant cost estimates. Customize your trip based on your preferences and budget.</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="about-icon">✈️</div>
+                            <h3>Seamless Booking</h3>
+                            <p>Experience hassle-free trip planning from start to finish. Register, browse destinations, calculate costs, and confirm your booking - all in one place. Your dream vacation is just a few clicks away.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features-section">
+                    <h2 class="features-title">Why Choose VoyageFlow?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌍</div>
+                            <h3>World-Class Destinations</h3>
+                            <p>Curated selection of premium locations worldwide</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h3>Transparent Pricing</h3>
+                            <p>No hidden costs, clear pricing breakdown</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Flexible Packages</h3>
+                            <p>Travel options to suit every budget</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">✨</div>
+                            <h3>Expert Insights</h3>
+                            <p>Professional travel recommendations</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Easy Planning</h3>
+                            <p>Stress-free interface for seamless booking</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">✅</div>
+                            <h3>Instant Confirmation</h3>
+                            <p>Immediate booking confirmations guaranteed</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- All 5 Cities Display -->
+                <section class="destinations-section">
+                    <h2 class="section-title">Explore Our Destinations</h2>
+                    <div class="cities-showcase">
+                    
+                    <!-- Paris -->
+                    <article class="city-showcase-card" data-city="paris">
+                        <div class="city-showcase-image">
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=600&fit=crop" alt="Eiffel Tower in Paris" loading="lazy">
+                            <div class="city-overlay">
+                                <h2>Paris</h2>
+                                <p class="city-country">🇫🇷 France</p>
+                            </div>
+                        </div>
+                        <div class="city-showcase-content">
+                            <h3>The City of Light</h3>
+                            <p>Experience romance, art, and world-class cuisine in the heart of France. From the Eiffel Tower to the Louvre, Paris enchants every visitor.</p>
+                            <div class="city-tags">
+                                <span class="tag">🎨 Art & Culture</span>
+                                <span class="tag">💕 Romance</span>
+                                <span class="tag">🍷 Fine Dining</span>
+                            </div>
+                            <button class="btn btn-primary city-explore-btn" onclick="selectCityAndPlan('paris')">Explore Paris</button>
+                        </div>
+                    </article>
+
+                    <!-- Tokyo -->
+                    <article class="city-showcase-card" data-city="tokyo">
+                        <div class="city-showcase-image">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=600&fit=crop" alt="Tokyo cityscape" loading="lazy">
+                            <div class="city-overlay">
+                                <h2>Tokyo</h2>
+                                <p class="city-country">🇯🇵 Japan</p>
+                            </div>
+                        </div>
+                        <div class="city-showcase-content">
+                            <h3>Ancient Meets Future</h3>
+                            <p>Discover the perfect harmony of tradition and innovation. From serene temples to neon-lit streets, Tokyo offers endless wonders.</p>
+                            <div class="city-tags">
+                                <span class="tag">🏯 Tradition</span>
+                                <span class="tag">🤖 Technology</span>
+                                <span class="tag">🍣 Cuisine</span>
+                            </div>
+                            <button class="btn btn-primary city-explore-btn" onclick="selectCityAndPlan('tokyo')">Explore Tokyo</button>
+                        </div>
+                    </article>
+
+                    <!-- Rome -->
+                    <article class="city-showcase-card" data-city="rome">
+                        <div class="city-showcase-image">
+                            <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&h=600&fit=crop" alt="Colosseum in Rome" loading="lazy">
+                            <div class="city-overlay">
+                                <h2>Rome</h2>
+                                <p class="city-country">🇮🇹 Italy</p>
+                            </div>
+                        </div>
+                        <div class="city-showcase-content">
+                            <h3>The Eternal City</h3>
+                            <p>Walk through 2,000 years of history. Marvel at ancient wonders, Renaissance art, and authentic Italian culture at every corner.</p>
+                            <div class="city-tags">
+                                <span class="tag">🏛️ History</span>
+                                <span class="tag">🎭 Architecture</span>
+                                <span class="tag">🍝 Italian Food</span>
+                            </div>
+                            <button class="btn btn-primary city-explore-btn" onclick="selectCityAndPlan('rome')">Explore Rome</button>
+                        </div>
+                    </article>
+
+                    <!-- Bali -->
+                    <article class="city-showcase-card" data-city="bali">
+                        <div class="city-showcase-image">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop" alt="Bali beach and temples" loading="lazy">
+                            <div class="city-overlay">
+                                <h2>Bali</h2>
+                                <p class="city-country">🇮🇩 Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="city-showcase-content">
+                            <h3>Island Paradise</h3>
+                            <p>Find tranquility in pristine beaches, lush rice terraces, and sacred temples. Bali is your ultimate tropical escape.</p>
+                            <div class="city-tags">
+                                <span class="tag">🏖️ Beaches</span>
+                                <span class="tag">🧘 Wellness</span>
+                                <span class="tag">🌴 Nature</span>
+                            </div>
+                            <button class="btn btn-primary city-explore-btn" onclick="selectCityAndPlan('bali')">Explore Bali</button>
+                        </div>
+                    </article>
+
+                    <!-- New York City -->
+                    <article class="city-showcase-card" data-city="nyc">
+                        <div class="city-showcase-image">
+                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=600&fit=crop" alt="New York City skyline" loading="lazy">
+                            <div class="city-overlay">
+                                <h2>New York City</h2>
+                                <p class="city-country">🇺🇸 USA</p>
+                            </div>
+                        </div>
+                        <div class="city-showcase-content">
+                            <h3>The City That Never Sleeps</h3>
+                            <p>Experience the energy of Times Square, Central Park's tranquility, and world-class entertainment in America's iconic metropolis.</p>
+                            <div class="city-tags">
+                                <span class="tag">🌃 Urban Life</span>
+                                <span class="tag">🎭 Entertainment</span>
+                                <span class="tag">🛍️ Shopping</span>
+                            </div>
+                            <button class="btn btn-primary city-explore-btn" onclick="selectCityAndPlan('nyc')">Explore NYC</button>
+                        </div>
+                    </article>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- Individual City Detail Pages -->
+        
+        <!-- Paris Details -->
+        <div id="view-paris" class="view-container city-detail-view" role="region" aria-labelledby="paris-detail-heading">
+            <div class="city-detail-content">
+                <button class="btn-back" onclick="showView('view-blog')">← Back to Destinations</button>
+                <h1 id="paris-detail-heading" class="city-detail-title">Paris, France</h1>
+                <div class="city-hero-image" style="background-image: url('images/paris.jpg');"></div>
+                
+                <section class="city-section">
+                    <h2>About Paris</h2>
+                    <p>Paris, the capital of France, is one of the most iconic cities in the world. Known as the "City of Light," Paris has been a major center of art, fashion, and culture for centuries. The city's stunning architecture, world-class museums, and romantic atmosphere make it a top destination for travelers worldwide.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Top Attractions</h2>
+                    <ul class="attractions-list">
+                        <li><strong>Eiffel Tower</strong> - The iconic 330-meter iron tower offering breathtaking city views</li>
+                        <li><strong>Louvre Museum</strong> - Home to the Mona Lisa and thousands of artistic masterpieces</li>
+                        <li><strong>Notre-Dame Cathedral</strong> - Gothic architectural marvel on Île de la Cité</li>
+                        <li><strong>Champs-Élysées</strong> - Famous avenue perfect for shopping and dining</li>
+                        <li><strong>Sacré-Cœur</strong> - Beautiful basilica atop Montmartre hill</li>
+                        <li><strong>Arc de Triomphe</strong> - Monument honoring French military victories</li>
+                    </ul>
+                </section>
+
+                <section class="city-section">
+                    <h2>Best Time to Visit</h2>
+                    <p>April to June and October to November offer pleasant weather and fewer crowds. Summer (July-August) is peak season with warm weather but more tourists.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Local Cuisine</h2>
+                    <p>Indulge in croissants, baguettes, escargot, coq au vin, crème brûlée, and fine French wine. Don't miss dining at a traditional Parisian café or bistro.</p>
+                </section>
+
+                <div class="city-cta">
+                    <button class="btn btn-primary btn-large" onclick="selectCityAndPlan('Paris')">Plan Trip to Paris</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tokyo Details -->
+        <div id="view-tokyo" class="view-container city-detail-view" role="region" aria-labelledby="tokyo-detail-heading">
+            <div class="city-detail-content">
+                <button class="btn-back" onclick="showView('view-home')">← Back to Home</button>
+                <h1 id="tokyo-detail-heading" class="city-detail-title">Tokyo, Japan</h1>
+                <div class="city-hero-image" style="background-image: url('images/tokyo.jpg');"></div>
+                
+                <section class="city-section">
+                    <h2>About Tokyo</h2>
+                    <p>Tokyo, Japan's bustling capital, seamlessly blends ultramodern and traditional elements. From neon-lit skyscrapers to historic temples, Tokyo offers an unforgettable experience. This megacity is renowned for its cutting-edge technology, fashion, cuisine, and rich cultural heritage.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Top Attractions</h2>
+                    <ul class="attractions-list">
+                        <li><strong>Senso-ji Temple</strong> - Tokyo's oldest and most significant Buddhist temple in Asakusa</li>
+                        <li><strong>Tokyo Skytree</strong> - World's tallest tower with panoramic city views</li>
+                        <li><strong>Shibuya Crossing</strong> - The world's busiest pedestrian crossing</li>
+                        <li><strong>Meiji Shrine</strong> - Tranquil Shinto shrine surrounded by forest</li>
+                        <li><strong>Tsukiji Outer Market</strong> - Fresh seafood and authentic Japanese cuisine</li>
+                        <li><strong>Imperial Palace</strong> - The Emperor's residence with beautiful gardens</li>
+                    </ul>
+                </section>
+
+                <section class="city-section">
+                    <h2>Best Time to Visit</h2>
+                    <p>March to May (cherry blossom season) and October to November (autumn foliage) are ideal. Spring and fall offer mild weather and stunning natural beauty.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Local Cuisine</h2>
+                    <p>Experience world-class sushi, ramen, tempura, tonkatsu, and yakitori. Don't miss trying authentic Japanese street food and visiting an izakaya (Japanese pub).</p>
+                </section>
+
+                <div class="city-cta">
+                    <button class="btn btn-primary btn-large" onclick="selectCityAndPlan('Tokyo')">Plan Trip to Tokyo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rome Details -->
+        <div id="view-rome" class="view-container city-detail-view" role="region" aria-labelledby="rome-detail-heading">
+            <div class="city-detail-content">
+                <button class="btn-back" onclick="showView('view-home')">← Back to Home</button>
+                <h1 id="rome-detail-heading" class="city-detail-title">Rome, Italy</h1>
+                <div class="city-hero-image" style="background-image: url('images/rome.jpg');"></div>
+                
+                <section class="city-section">
+                    <h2>About Rome</h2>
+                    <p>Rome, the Eternal City, is a living museum showcasing 2,000+ years of history. As the capital of Italy and once the heart of the Roman Empire, Rome features incredible ancient ruins, Renaissance art, and vibrant modern culture coexisting in perfect harmony.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Top Attractions</h2>
+                    <ul class="attractions-list">
+                        <li><strong>Colosseum</strong> - Ancient amphitheater that once hosted gladiatorial contests</li>
+                        <li><strong>Vatican City</strong> - St. Peter's Basilica, Sistine Chapel, and Vatican Museums</li>
+                        <li><strong>Trevi Fountain</strong> - Baroque masterpiece where you toss a coin for good luck</li>
+                        <li><strong>Pantheon</strong> - Best-preserved ancient Roman building with impressive dome</li>
+                        <li><strong>Roman Forum</strong> - Ruins of ancient government buildings and temples</li>
+                        <li><strong>Spanish Steps</strong> - Iconic 135-step stairway in the heart of Rome</li>
+                    </ul>
+                </section>
+
+                <section class="city-section">
+                    <h2>Best Time to Visit</h2>
+                    <p>April to June and September to October offer pleasant weather and manageable crowds. Avoid August when many locals vacation and temperatures peak.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Local Cuisine</h2>
+                    <p>Savor authentic pasta carbonara, cacio e pepe, pizza al taglio, supplì, and gelato. Experience traditional Roman trattorias and osterias for genuine flavors.</p>
+                </section>
+
+                <div class="city-cta">
+                    <button class="btn btn-primary btn-large" onclick="selectCityAndPlan('Rome')">Plan Trip to Rome</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bali Details -->
+        <div id="view-bali" class="view-container city-detail-view" role="region" aria-labelledby="bali-detail-heading">
+            <div class="city-detail-content">
+                <button class="btn-back" onclick="showView('view-home')">← Back to Home</button>
+                <h1 id="bali-detail-heading" class="city-detail-title">Bali, Indonesia</h1>
+                <div class="city-hero-image" style="background-image: url('images/bali.jpg');"></div>
+                
+                <section class="city-section">
+                    <h2>About Bali</h2>
+                    <p>Bali, the Island of the Gods, is Indonesia's most famous destination offering stunning beaches, lush rice terraces, ancient temples, and vibrant culture. Known for its warm hospitality, spiritual atmosphere, and natural beauty, Bali is perfect for both relaxation and adventure.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Top Attractions</h2>
+                    <ul class="attractions-list">
+                        <li><strong>Tanah Lot Temple</strong> - Iconic sea temple perched on a rock formation</li>
+                        <li><strong>Ubud Rice Terraces</strong> - Stunning emerald-green rice paddies</li>
+                        <li><strong>Sacred Monkey Forest</strong> - Sanctuary with hundreds of playful monkeys</li>
+                        <li><strong>Seminyak Beach</strong> - Trendy beach area for surfing and sunset viewing</li>
+                        <li><strong>Uluwatu Temple</strong> - Clifftop temple with traditional Kecak dance performances</li>
+                        <li><strong>Mount Batur</strong> - Active volcano perfect for sunrise trekking</li>
+                    </ul>
+                </section>
+
+                <section class="city-section">
+                    <h2>Best Time to Visit</h2>
+                    <p>April to October (dry season) is ideal with sunny weather. June to August is peak season. Avoid January-March (rainy season) for beach activities.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Local Cuisine</h2>
+                    <p>Try nasi goreng, satay, babi guling (roast pig), lawar, and fresh tropical fruits. Explore warungs (local eateries) for authentic Balinese flavors.</p>
+                </section>
+
+                <div class="city-cta">
+                    <button class="btn btn-primary btn-large" onclick="selectCityAndPlan('Bali')">Plan Trip to Bali</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NYC Details -->
+        <div id="view-nyc" class="view-container city-detail-view" role="region" aria-labelledby="nyc-detail-heading">
+            <div class="city-detail-content">
+                <button class="btn-back" onclick="showView('view-home')">← Back to Home</button>
+                <h1 id="nyc-detail-heading" class="city-detail-title">New York City, USA</h1>
+                <div class="city-hero-image" style="background-image: url('images/nyc.jpg');"></div>
+                
+                <section class="city-section">
+                    <h2>About New York City</h2>
+                    <p>New York City, the city that never sleeps, is America's largest metropolis and a global hub of culture, finance, and entertainment. From iconic skyscrapers to world-class museums, Broadway theaters to diverse neighborhoods, NYC offers endless excitement and opportunities for exploration.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Top Attractions</h2>
+                    <ul class="attractions-list">
+                        <li><strong>Statue of Liberty</strong> - Symbol of freedom and democracy on Liberty Island</li>
+                        <li><strong>Central Park</strong> - Urban oasis with 843 acres of green space</li>
+                        <li><strong>Times Square</strong> - Neon-lit intersection and entertainment hub</li>
+                        <li><strong>Empire State Building</strong> - Iconic Art Deco skyscraper with observation decks</li>
+                        <li><strong>Brooklyn Bridge</strong> - Historic suspension bridge connecting Manhattan and Brooklyn</li>
+                        <li><strong>Metropolitan Museum of Art</strong> - World-renowned art museum with vast collections</li>
+                    </ul>
+                </section>
+
+                <section class="city-section">
+                    <h2>Best Time to Visit</h2>
+                    <p>April to June and September to November offer comfortable weather and festive atmosphere. Avoid extreme cold (January-February) and humid summer (July-August) if possible.</p>
+                </section>
+
+                <section class="city-section">
+                    <h2>Local Cuisine</h2>
+                    <p>Enjoy New York pizza, bagels with lox, hot dogs, pastrami sandwiches, and diverse international cuisine. Experience food from every culture in this culinary melting pot.</p>
+                </section>
+
+                <div class="city-cta">
+                    <button class="btn btn-primary btn-large" onclick="selectCityAndPlan('New York City')">Plan Trip to NYC</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 3: Trip Itinerary & Price Calculator -->
+        <div id="view-calculator" class="view-container" role="region" aria-labelledby="calculator-heading">
+            <div class="calculator-content">
+                <h2 id="calculator-heading" class="view-title">Plan Your Perfect Trip</h2>
+                <p class="calculator-intro">Select your travel options and see real-time pricing</p>
+
+                <!-- Travel Options Section -->
+                <section class="options-section">
+                    <h3>Travel Options</h3>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="travel" data-price="25000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=600&fit=crop" alt="flight">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Economy Flight</span>
+                                    <span class="option-price">₹25,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="travel" data-price="45000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c4?w=800&h=600&fit=crop" alt="business-class">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Business Class Flight</span>
+                                    <span class="option-price">₹45,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="travel" data-price="8000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&h=600&fit=crop" alt="car-rental">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Car Rental (7 days)</span>
+                                    <span class="option-price">₹8,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="travel" data-price="3500">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1502920917128-1aa500764b3f?w=800&h=600&fit=crop" alt="airport-transfer">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Airport Transfers</span>
+                                    <span class="option-price">₹3,500</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Food Packages Section -->
+                <section class="options-section">
+                    <h3>Food Packages</h3>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="food" data-price="7000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop" alt="budget-meals">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Budget Meals</span>
+                                    <span class="option-price">₹7,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="food" data-price="12000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?w=800&h=600&fit=crop" alt="standard-dining">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Standard Dining</span>
+                                    <span class="option-price">₹12,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="food" data-price="20000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop" alt="fine-dining">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Fine Dining Experience</span>
+                                    <span class="option-price">₹20,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="food" data-price="5000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1514512364185-9f1e08d0f3d3?w=800&h=600&fit=crop" alt="local-food-tour">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Local Food Tour</span>
+                                    <span class="option-price">₹5,000</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Activities Section -->
+                <section class="options-section">
+                    <h3>Activities</h3>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="activities" data-price="6000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop" alt="city-tour">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">City Sightseeing Tour</span>
+                                    <span class="option-price">₹6,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="activities" data-price="4500">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=800&h=600&fit=crop" alt="museum">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Museum Pass</span>
+                                    <span class="option-price">₹4,500</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="activities" data-price="15000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1483721310020-03333e577078?w=800&h=600&fit=crop" alt="adventure-sports">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Adventure Sports Package</span>
+                                    <span class="option-price">₹15,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="activities" data-price="8000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop" alt="cultural-experience">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Cultural Experience</span>
+                                    <span class="option-price">₹8,000</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Extra Expenses Section -->
+                <section class="options-section">
+                    <h3>Extra Expenses & Add-ons</h3>
+                    <div class="options-grid">
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="extras" data-price="5000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop" alt="travel-insurance">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Travel Insurance</span>
+                                    <span class="option-price">₹5,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="extras" data-price="8000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop" alt="premium-accommodation">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Premium Accommodation Upgrade</span>
+                                    <span class="option-price">₹8,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="extras" data-price="3000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=800&h=600&fit=crop" alt="extra-luggage">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Extra Luggage Allowance</span>
+                                    <span class="option-price">₹3,000</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="extras" data-price="6000">
+                            <img class="option-thumb" src="https://images.unsplash.com/photo-1523287562758-66c7fc58967f?w=800&h=600&fit=crop" alt="photography-package">
+                            <div class="option-body">
+                                <div class="option-meta">
+                                    <span class="option-text">Photography Package</span>
+                                    <span class="option-price">₹6,000</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+                            <span class="option-text">VIP Lounge Access</span>
+                            <span class="option-price">₹6,000</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="extras" data-price="4000">
+                            <span class="option-text">Professional Photography</span>
+                            <span class="option-price">₹4,000</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="checkbox" class="price-option" name="extras" data-price="2500">
+                            <span class="option-text">Local SIM Card & WiFi</span>
+                            <span class="option-price">₹2,500</span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Modification Request Section -->
+                <section class="options-section">
+                    <h3>Request Changes or Modifications</h3>
+                    <div class="modification-section">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hasModifications" name="hasModifications">
+                            <span>I have special requests or modifications</span>
+                        </label>
+                        <div id="modificationDetails" class="modification-details hidden">
+                            <textarea id="modificationText" class="modification-textarea" placeholder="Please describe your special requests, date changes, meal preferences, accessibility needs, or any other modifications..." rows="4"></textarea>
+                            <p class="modification-note">Our team will review your requests and contact you within 24 hours.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Total Display -->
+                <div class="total-section">
+                    <div class="total-display">
+                        <span class="total-label">Total Price:</span>
+                        <span class="total-amount" id="totalAmount">₹0</span>
+                    </div>
+                    <button id="confirmBooking" class="btn btn-primary confirm-sticky-btn">
+                        <span class="btn-text">Confirm Booking</span>
+                        <span class="btn-hover-text">Click to Confirm ✈️</span>
+                    </button>
+                </div>
+
+                <!-- Booking Confirmation Modal -->
+                <div id="modalContainer" class="modal-container hidden" role="dialog" aria-modal="true">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-content">
+                        <button class="modal-close" aria-label="Close modal">×</button>
+                        <h3 id="modalTitle" class="modal-title">Confirm Your Booking</h3>
+                        <div class="modal-body">
+                            <p id="modalMessage">You are about to book this trip. Do you want to proceed?</p>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn btn-secondary" id="modalCancel">Cancel</button>
+                            <button class="btn btn-primary" id="modalConfirm">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alert Container -->
+                <div id="alertContainer" class="alert-container hidden">
+                    <div class="alert-content">
+                        <p id="alertMessage"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Booking Confirmation View -->
+        <div id="view-booking-confirmation" class="view-container" role="region" aria-labelledby="booking-heading">
+            <div class="booking-confirmation-content">
+                <div class="confirmation-header">
+                    <div class="confirmation-icon">✓</div>
+                    <h2 id="booking-heading" class="view-title">Booking Confirmed!</h2>
+                    <p class="confirmation-message">Your trip has been successfully booked</p>
+                </div>
+
+                <div class="booking-details-card">
+                    <h3>Booking Summary</h3>
+                    
+                    <div class="booking-detail-row">
+                        <span class="detail-label">📍 Destination</span>
+                        <span class="detail-value" id="confirmedDestination">-</span>
+                    </div>
+
+                    <div class="booking-detail-row">
+                        <span class="detail-label">📅 Booking Date</span>
+                        <span class="detail-value" id="confirmedDate">-</span>
+                    </div>
+
+                    <div class="booking-detail-row">
+                        <span class="detail-label">🎫 Booking ID</span>
+                        <span class="detail-value booking-id" id="bookingId">-</span>
+                    </div>
+
+                    <div class="booking-detail-section">
+                        <h4>Trip Details</h4>
+                        
+                        <div class="booking-detail-row">
+                            <span class="detail-label">✈️ Travel Option</span>
+                            <span class="detail-value" id="confirmedTravel">-</span>
+                        </div>
+
+                        <div class="booking-detail-row">
+                            <span class="detail-label">🍽️ Food Package</span>
+                            <span class="detail-value" id="confirmedFood">-</span>
+                        </div>
+
+                        <div class="booking-detail-row">
+                            <span class="detail-label">🎯 Activities</span>
+                            <span class="detail-value" id="confirmedActivities">-</span>
+                        </div>
+
+                        <div class="booking-detail-row">
+                            <span class="detail-label">🏨 Accommodation</span>
+                            <span class="detail-value" id="confirmedAccommodation">-</span>
+                        </div>
+
+                        <div class="booking-detail-row" id="extrasRow" style="display: none;">
+                            <span class="detail-label">➕ Extras</span>
+                            <span class="detail-value" id="confirmedExtras">-</span>
+                        </div>
+
+                        <div class="booking-detail-row" id="modificationsRow" style="display: none;">
+                            <span class="detail-label">🔧 Modifications</span>
+                            <span class="detail-value" id="confirmedModifications">-</span>
+                        </div>
+                    </div>
+
+                    <div class="booking-total">
+                        <span class="total-label">Total Amount</span>
+                        <span class="total-amount" id="confirmedTotal">₹0</span>
+                    </div>
+                </div>
+
+                <div class="confirmation-actions">
+                    <button class="btn btn-primary btn-large" onclick="showView('view-home')">
+                        Back to Home
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="showView('view-showcase')">
+                        Explore More Destinations
+                    </button>
+                </div>
+
+                <div class="confirmation-note">
+                    <p>📧 A confirmation email has been sent to your registered email address</p>
+                    <p>💼 You can manage your bookings from your profile</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 4: Confirmation -->
+        <!-- City Showcase - All Destinations -->
+        <div id="view-showcase" class="view-container" role="region" aria-labelledby="showcase-heading">
+            <div class="showcase-content">
+                <h2 id="showcase-heading" class="view-title">Explore Our Top Destinations</h2>
+                <p class="showcase-subtitle">Discover amazing cities around the world</p>
+
+                <div class="showcase-grid">
+                    <!-- Paris Card -->
+                    <div class="showcase-card" data-city="paris">
+                        <div class="showcase-image">
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=600&fit=crop" alt="Eiffel Tower in Paris" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="showcase-badge">Popular</div>
+                        </div>
+                        <div class="showcase-details">
+                            <h3>Paris</h3>
+                            <p class="showcase-location">🇫🇷 France</p>
+                            <p class="showcase-desc">The City of Light awaits with its iconic Eiffel Tower, world-class museums, and romantic ambiance.</p>
+                            <div class="showcase-highlights">
+                                <span class="highlight-tag">Culture</span>
+                                <span class="highlight-tag">Romance</span>
+                                <span class="highlight-tag">Art</span>
+                            </div>
+                            <button class="btn btn-primary showcase-btn" onclick="selectCityAndPlan('paris')">Explore Paris</button>
+                        </div>
+                    </div>
+
+                    <!-- Tokyo Card -->
+                    <div class="showcase-card" data-city="tokyo">
+                        <div class="showcase-image tokyo-image">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=600&fit=crop" alt="Tokyo cityscape" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="showcase-badge">Trending</div>
+                        </div>
+                        <div class="showcase-details">
+                            <h3>Tokyo</h3>
+                            <p class="showcase-location">🇯🇵 Japan</p>
+                            <p class="showcase-desc">Experience the perfect blend of ancient tradition and cutting-edge technology in Japan's vibrant capital.</p>
+                            <div class="showcase-highlights">
+                                <span class="highlight-tag">Technology</span>
+                                <span class="highlight-tag">Culture</span>
+                                <span class="highlight-tag">Food</span>
+                            </div>
+                            <button class="btn btn-primary showcase-btn" onclick="selectCityAndPlan('tokyo')">Explore Tokyo</button>
+                        </div>
+                    </div>
+
+                    <!-- Rome Card -->
+                    <div class="showcase-card" data-city="rome">
+                        <div class="showcase-image rome-image">
+                            <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&h=600&fit=crop" alt="Colosseum in Rome" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="showcase-badge">Historic</div>
+                        </div>
+                        <div class="showcase-details">
+                            <h3>Rome</h3>
+                            <p class="showcase-location">🇮🇹 Italy</p>
+                            <p class="showcase-desc">Walk through history in the Eternal City, home to the Colosseum, Vatican, and timeless Italian charm.</p>
+                            <div class="showcase-highlights">
+                                <span class="highlight-tag">History</span>
+                                <span class="highlight-tag">Architecture</span>
+                                <span class="highlight-tag">Cuisine</span>
+                            </div>
+                            <button class="btn btn-primary showcase-btn" onclick="selectCityAndPlan('rome')">Explore Rome</button>
+                        </div>
+                    </div>
+
+                    <!-- Bali Card -->
+                    <div class="showcase-card" data-city="bali">
+                        <div class="showcase-image bali-image">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=600&fit=crop" alt="Bali beach and temples" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="showcase-badge">Paradise</div>
+                        </div>
+                        <div class="showcase-details">
+                            <h3>Bali</h3>
+                            <p class="showcase-location">🇮🇩 Indonesia</p>
+                            <p class="showcase-desc">Discover tropical paradise with stunning beaches, ancient temples, and unforgettable sunsets.</p>
+                            <div class="showcase-highlights">
+                                <span class="highlight-tag">Beach</span>
+                                <span class="highlight-tag">Nature</span>
+                                <span class="highlight-tag">Wellness</span>
+                            </div>
+                            <button class="btn btn-primary showcase-btn" onclick="selectCityAndPlan('bali')">Explore Bali</button>
+                        </div>
+                    </div>
+
+                    <!-- New York Card -->
+                    <div class="showcase-card" data-city="nyc">
+                        <div class="showcase-image nyc-image">
+                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=600&fit=crop" alt="New York City skyline" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="showcase-badge">Vibrant</div>
+                        </div>
+                        <div class="showcase-details">
+                            <h3>New York City</h3>
+                            <p class="showcase-location">🇺🇸 USA</p>
+                            <p class="showcase-desc">The city that never sleeps offers endless entertainment, iconic landmarks, and diverse experiences.</p>
+                            <div class="showcase-highlights">
+                                <span class="highlight-tag">Urban</span>
+                                <span class="highlight-tag">Entertainment</span>
+                                <span class="highlight-tag">Shopping</span>
+                            </div>
+                            <button class="btn btn-primary showcase-btn" onclick="selectCityAndPlan('nyc')">Explore NYC</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-footer">
+                    <button class="btn btn-secondary" onclick="showView('view-home')">Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Containers -->
+    <div id="modalContainer" class="modal-container hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-overlay" aria-hidden="true"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <h3 id="modalTitle" class="modal-title">Modal Title</h3>
+            <div class="modal-body">
+                <p id="modalMessage">Modal message content</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary modal-confirm" id="modalConfirm">Confirm</button>
+                <button class="btn btn-secondary modal-cancel" id="modalCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert/Toast Container -->
+    <div id="alertContainer" class="alert-container hidden" role="alert" aria-live="assertive">
+        <div class="alert-content">
+            <span class="alert-icon" aria-hidden="true"></span>
+            <p class="alert-message" id="alertMessage"></p>
+            <button class="alert-close" aria-label="Close alert">×</button>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="loading-text">Loading...</p>
+    </div>
+
+    <!-- Footer with Contact Information -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>VoyageFlow</h3>
+                <p>Your Ultimate Travel Planning Companion</p>
+                <p class="footer-tagline">Discover. Plan. Travel.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="contact-list">
+                    <li><strong>Email:</strong> <a href="mailto:info@voyageflow.com">info@voyageflow.com</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:+919140470230">+91 9140470230</a></li>
+                    <li><strong>Address:</strong> Ben10 University,Greater Noida, India 201310</li>
+                    <li><strong>Hours:</strong> Mon-Fri 9:00 AM - 6:00 PM IST</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href=" https://x.com/IlyasMansoori10?t=JBdIGBS1JNoa33fqhEHT1Q&s=08 " target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">🐦 Twitter</a>
+                    <a href="https://www.linkedin.com/in/ilyas-mansoori-a78818332?utm_source=share_via&utm_content=profile&utm_medium=member_android " target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">💼 LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 VoyageFlow. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-container hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+        <div class="modal-overlay" aria-hidden="true"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <h3 id="loginModalTitle" class="modal-title">Login to VoyageFlow</h3>
+            <div class="modal-body">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-input" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-input" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="modal-note">Don't have an account? <a href="#" id="goToRegister">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal-container hidden" role="dialog" aria-modal="true" aria-labelledby="registerModalTitle">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <h3 id="registerModalTitle" class="modal-title">Create Your Account</h3>
+            <div class="modal-body">
+                <form id="regForm" class="auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="fullName" 
+                            name="fullName" 
+                            class="form-input" 
+                            required 
+                            placeholder="Enter your full name">
+                        <span class="error" id="err-fullName" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            required 
+                            placeholder="your.email@example.com">
+                        <span class="error" id="err-email" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            class="form-input" 
+                            required 
+                            maxlength="10"
+                            pattern="[0-9]{10}"
+                            placeholder="Enter 10-digit phone number">
+                        <span class="error" id="err-phone" role="alert"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pin">6-Digit PIN <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="pin" 
+                            name="pin" 
+                            class="form-input" 
+                            required 
+                            maxlength="6"
+                            pattern="[0-9]{6}"
+                            placeholder="Enter 6-digit PIN">
+                        <span class="error" id="err-pin" role="alert"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Register Now</button>
+                </form>
+                <p class="modal-note">Already have an account? <a href="#" id="goToLogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>
